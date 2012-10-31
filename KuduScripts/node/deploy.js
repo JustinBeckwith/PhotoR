@@ -17,7 +17,7 @@ var deploymentTemp = process.env.DEPLOYMENT_TEMP;
 /*
  * run the build command, and wait for the callback to exit
  */
-async.series([build, minify, copy, complete]);
+async.series([build, minify, complete]);
 
 
 /*
