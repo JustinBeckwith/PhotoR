@@ -20,7 +20,6 @@ var deploymentTemp = process.env.DEPLOYMENT_TEMP;
 async.series([build, minify, copy, complete]);
 
 
-
 /*
  * execute MS Build 
  */
