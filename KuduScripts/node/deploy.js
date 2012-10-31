@@ -59,7 +59,7 @@ function minify(callback) {
  * copy files from the temp directory to the target directory
  */
 function copy(callback) {
-	console.log('Copying files from %s to %s', deploymentTemp, deploymentTarget);
+	console.log('Copying files from ' + deploymentTemp + ' to ' + deploymentTarget);
 	//wrench.copyDirSyncRecursive(deploymentTemp, deploymentTarget);
 	callback();
 }
