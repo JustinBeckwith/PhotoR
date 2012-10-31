@@ -52,6 +52,7 @@ function build(callback) {
  */
 function minify(callback) {
 	console.log('minifying javascript');
+	// implement minify
 	callback();
 }
 
