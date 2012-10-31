@@ -61,7 +61,29 @@ function minify(callback) {
 function copy(callback) {
 	console.log('Copying files from ' + deploymentTemp + ' to ' + deploymentTarget);
 	wrench.copyDirSyncRecursive(deploymentTemp, deploymentTarget);
-	callback();	
+
+	var buildCommand = "xcopy \"" + deploymentTemp + "\" \"" + deploymentTarget + "\" /Y /Q /E";
+	//console.log('build command %s', buildCommand);
+	var xcopy = child_process.exec(buildCommand, function(error, stdout, stderr) {
+		if(error) {
+			console.log(error.stack);
+			console.log('Error code: ' + error.code);
+			console.log('Signal received: ' + error.signal);
+
+			sendMessage(util.format('deploying %s to Windows Azure has failed', projectName));
+			process.exit(1);
+		}
+		if(stderr) console.error(stderr);
+		if(stdout) console.log(stdout);	
+	});
+
+	xcopy.on('exit', function(code) {
+		console.log('xcopy exited with exit code ' + code);
+		callback();
+	});	
+
+	
+	//callback();	
 }
 
 /*
