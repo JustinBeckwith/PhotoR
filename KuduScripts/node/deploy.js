@@ -63,7 +63,7 @@ function copy(callback) {
 	//wrench.copyDirSyncRecursive(deploymentTemp, deploymentTarget);
 
 	var xcopycommand = "xcopy \"" + deploymentTemp + "\" \"" + deploymentTarget + "\" /Y /Q /E";
-	var xcopy = child_process.exec(buildCommand, function(error, stdout, stderr) {
+	var xcopy = child_process.exec(xcopycommand, function(error, stdout, stderr) {
 		if(error) {
 			console.log(error.stack);
 			console.log('Error code: ' + error.code);
