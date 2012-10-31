@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<style type="text/css">
+    #noPics {
+        border: 2px dashed #808080;
+        min-height: 200px;
+        background-color: #ebe6e6;
+        margin: auto;
+        font-size: 2.0em;
+        color: #808080;
+        text-align: center;
+        padding-top: 100px;
+    }
+
+    #pics img {
+        float: left;
+        width: 300px;
+        height: 300px;
+    }
+</style>
+
+
+<div id="pics">
+    @foreach (var pic in ViewBag.pics)
+    {
+        <img src="@pic" alt="Nope" />
+    }
+</div>
+@if (ViewBag.pics.Count == 0)
+{
+    <div id="noPics">drag images here</div>
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-0.5.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/PhotoCloud.js"></script>
+}
+
