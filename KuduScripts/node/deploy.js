@@ -55,6 +55,7 @@ function minify(callback) {
 	callback();
 }
 
+
 /*
  * copy files from the temp directory to the target directory
  */
