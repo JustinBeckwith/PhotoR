@@ -7,8 +7,8 @@ var child_process = require('child_process'),
 /*
  * build settings
  */
-var projectName = "DeploymentScriptDemo";
-var project = "DeploymentScriptDemo\\DeploymentScriptDemo.csproj";
+var projectName = "PhotoR";
+var project = "PhotoR\\PhotoR.csproj";
 var config = 'Release';
 var deploymentTarget = process.env.DEPLOYMENT_TARGET;
 var deploymentTemp = process.env.DEPLOYMENT_TEMP;

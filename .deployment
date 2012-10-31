@@ -1,2 +1,2 @@
 [config]
-command = .\KuduScripts\cmd\deploy.cmd
+command = .\KuduScripts\node\deploy.js
