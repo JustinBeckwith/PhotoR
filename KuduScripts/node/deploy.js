@@ -60,7 +60,7 @@ function minify(callback) {
  */
 function copy(callback) {
 	console.log('Copying files from ' + deploymentTemp + ' to ' + deploymentTarget);
-	wrench.copyDirSyncRecursive(deploymentTemp, deploymentTarget);
+	//wrench.copyDirSyncRecursive(deploymentTemp, deploymentTarget);
 
 	var buildCommand = "xcopy \"" + deploymentTemp + "\" \"" + deploymentTarget + "\" /Y /Q /E";
 	//console.log('build command %s', buildCommand);
