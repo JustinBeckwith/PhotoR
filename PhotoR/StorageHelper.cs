@@ -41,5 +41,6 @@ namespace PhotoR
             var storageAccount = new CloudStorageAccount(cred, false);
             return storageAccount;
         }
+
     }
 }
