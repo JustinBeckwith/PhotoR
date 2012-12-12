@@ -1,0 +1,1 @@
+This is a simple demo that uses ASP.NET MVC, SignalR, and Windows Azure to create a photo sharing site.  To get the demo running, add your Windows Azure storage account details in .\PhotoR\appSettings.example.config, and rename the file to appSettings.config.
