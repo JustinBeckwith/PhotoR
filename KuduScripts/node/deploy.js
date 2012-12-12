@@ -61,11 +61,9 @@ function minify(callback) {
  */
 function copy(callback) {
 	console.log('Copying files from ' + deploymentTemp + ' to ' + deploymentTarget);
-	//wrench.copyDirSyncRecursive(deploymentTemp, deploymentTarget);
-
-	var buildCommand = "xcopy \"" + deploymentTemp + "\" \"" + deploymentTarget + "\" /Y /Q /E";
-	//console.log('build command %s', buildCommand);
-	var xcopy = child_process.exec(buildCommand, function(error, stdout, stderr) {
+	
+	var copyCommand = "xcopy \"" + deploymentTemp + "\" \"" + deploymentTarget + "\" /Y /Q /E";	
+	var xcopy = child_process.exec(copyCommand, function(error, stdout, stderr) {
 		if(error) {
 			console.log(error.stack);
 			console.log('Error code: ' + error.code);
@@ -82,9 +80,6 @@ function copy(callback) {
 		console.log('xcopy exited with exit code ' + code);
 		callback();
 	});	
-
-	
-	//callback();	
 }
 
 /*
