@@ -10,40 +10,32 @@ namespace PhotoR.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// show the top 6 images on the home page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            
-            var container = StorageHelper.getPhotoContainer();
-            var table = StorageHelper.getTable();            
-            var query = new TableQuery<PicEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "pics"));
-            var result = table.ExecuteQuery(query)
-                .OrderByDescending(x => x.DateCreated)
-                .Take(6)
-                .Select(x => container.GetBlockBlobReference(x.RowKey).Uri.AbsoluteUri);
-            ViewBag.pics = result.ToList();
+            var pageSize = 6;
+            var picManager = new PicManager();
+            ViewBag.pics = picManager.GetPics(pageSize).ToList();
             return View();
         }        
 
-
+        /// <summary>
+        /// upload the new pic to blob storage and add a new row in the table
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
             try
-            {                                         
-                var container = StorageHelper.getPhotoContainer();
-                var id = Guid.NewGuid().ToString();
-                var blob = container.GetBlockBlobReference(id);                                
-                blob.UploadFromStream(Request.Files[0].InputStream);
-
-                var table = StorageHelper.getTable();
-                var pic = new PicEntity(id);
-                pic.DateCreated = DateTime.Now;
-                var insertOp = TableOperation.Insert(pic);
-                table.Execute(insertOp);
-                
-                Response.Write(blob.Uri);
+            {
+                var picManager = new PicManager();
+                var uri = picManager.SavePic(Request.Files[0].InputStream);
+                Response.Write(uri);
                 Response.End();
-
                 return RedirectToAction("Index");
             }
             catch
