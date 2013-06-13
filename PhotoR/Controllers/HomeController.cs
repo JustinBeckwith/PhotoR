@@ -44,6 +44,10 @@ namespace PhotoR.Controllers
             }
         }
 
+        /// <summary>
+        /// clear all of the pictures from table storage
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Reset()
         {            
             var table = StorageHelper.getTable();
